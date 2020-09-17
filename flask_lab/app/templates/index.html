@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Events List!</h1>
+    <!-- date, event_name, num_guests, room_loc, description -->
+    <form action="/add-event" method="post" class="form">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <label for="event_name">Name of Event</label>
+        <input type="text" name="event_name" id="event_name">
+        <label for="num_guests">Number of Guests</label>
+        <input type="number" name="num_guests" id="num_guests">
+        <label for="room_loc">Location</label>
+        <input type="text" name="room_loc" id="room_loc">
+        <label for="description">Description</label>
+        <textarea name="description" cols="30" rows="2"></textarea>
+        <label for="recurring">Weekly?</label>
+        <input type="checkbox" name="recurring" value="recurring" id="recurring">
+        <input type="submit" value="Add New Event">
+    </form>
+    {% for event in events %}
+    <div>
+        <p>{{ event.date }}: Come see <b>{{ event.event_name }}</b> with <b>{{ event.num_guests }}</b> other people in the <b>{{ event.room_loc }}</b> for some <b>{{ event.description }} !</b>
+        {% if event.recurring %}
+        <span>&#9989;</span>
+        {% endif %}
+        </p>
+    </div>
+    {% endfor %}
+    <form action="/remove-event" method="post">
+        <label for="rem_date">Date</label>
+        <input type="date" name="rem_date" id="rem_date">
+        <label for="event_name">Name of Event</label>
+        <input type="text" name="rem_event_name" id="rem_event_name">
+        <input type="submit" value="Remove Event">
+    </form>
+{% endblock %}
+

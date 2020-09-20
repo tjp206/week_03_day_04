@@ -23,8 +23,8 @@ def add_event():
 def remove_event_1():
     eventDate = request.form['rem_date']
     eventEventName = request.form['rem_event_name']
-    print(eventDate)
-    print(eventEventName)
+    # print(eventDate)
+    # print(eventEventName)
     for event in events:
         if eventEventName == event.event_name and eventDate == event.date:
             remove_event(event)
